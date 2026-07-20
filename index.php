@@ -89,6 +89,23 @@ $search = isset($_GET['search']) ? $_GET['search'] : '';
 
             <button class="btn-play" id="btnPlayAction">▶ ¡Ver ahora!</button>
         </div>
+        <!-- Caja de Comentarios dentro del Modal -->
+<div class="comments-section" style="margin-top: 20px; border-top: 1px solid #f1ece6; padding-top: 15px;">
+    <h3 style="color: var(--text-dark); font-size: 16px; margin-bottom: 10px;">💬 Opiniones de la comunidad</h3>
+    
+    <!-- Contenedor donde se cargarán los comentarios de la base de datos -->
+    <div id="boxListaComentarios" style="max-height: 150px; overflow-y: auto; background: #faf8f5; padding: 10px; border-radius: 8px; margin-bottom: 10px; font-size: 13px;"></div>
+    
+    <!-- Formulario para escribir (Solo visible si el usuario inició sesión) -->
+    <?php if (isset($_SESSION['usuario'])): ?>
+        <div id="addCommentForm" style="display: flex; gap: 10px;">
+            <input type="text" id="txtComentario" placeholder="Escribe tu reseña sobre la película..." style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 8px; font-family: inherit;">
+            <button onclick="enviarComentario()" style="background: var(--pastel-primary); border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; color: #7c4c4c;">Publicar</button>
+        </div>
+    <?php else: ?>
+        <p style="font-size: 12px; color: gray; font-style: italic;">Inicia sesión para dejar un comentario. ✨</p>
+    <?php endif; ?>
+</div>
     </div>
 
     <!-- MODAL REGISTRO / LOGIN (Se mantiene igual) -->

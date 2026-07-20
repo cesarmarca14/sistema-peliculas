@@ -75,6 +75,8 @@ function openMovie(id, titulo, genero, sinopsis, escenasString) {
 
   // Resetear estrellas visualmente
   resetStars();
+  // 🔥 ESTA LÍNEA NUEVA: Carga los comentarios de la película que acabas de abrir
+  cargarComentarios(id);
 
   const contenedorEscenas = document.getElementById("modalScenes");
   contenedorEscenas.innerHTML = "";
@@ -211,4 +213,29 @@ function filtrarPorGenero(generoSeleccionado, botonActivo) {
             pelicula.style.display = 'none';  // Ocultar
         }
     });
+}
+// FUNCIÓN PARA ENVIAR UN COMENTARIO NUEVO
+function enviarComentario() {
+    const txt = document.getElementById("txtComentario");
+    if (txt.value.trim() === "" || !activeMovieId) return;
+
+    const formData = new FormData();
+    formData.append('pelicula_id', activeMovieId);
+    formData.append('comentario', txt.value);
+
+    fetch('interactions.php?action=comentar', { method: 'POST', body: formData })
+        .then(res => res.text())
+        .then(res => {
+            if (res.trim() === 'success') {
+                txt.value = ""; // Limpiar la caja de texto
+                cargarComentarios(activeMovieId); // Refrescar la lista de comentarios inmediatamente
+            }
+        });
+}
+
+// FUNCIÓN PARA CARGAR LOS COMENTARIOS DE LA PELÍCULA EN EL IFRAME
+function cargarComentarios(peliculaId) {
+    const box = document.getElementById("boxListaComentarios");
+    // Inyectamos el lector nativo apuntando al archivo que creamos antes
+    box.innerHTML = `<iframe src="obtener_comentarios.php?id=${peliculaId}" style="width:100%; height:130px; border:none; background:transparent;"></iframe>`;
 }

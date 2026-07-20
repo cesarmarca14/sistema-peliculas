@@ -84,7 +84,7 @@ $search = isset($_GET['search']) ? $_GET['search'] : '';
                 </div>
             </div>
 
-            <h3>Escenas de la película</h3>
+            <h3>Escenas de la Película</h3>
             <div id="modalScenes" class="escenas-container"></div>
 
             <button class="btn-play" id="btnPlayAction">▶ ¡Ver ahora!</button>

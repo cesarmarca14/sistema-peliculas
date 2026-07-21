@@ -10,7 +10,7 @@ $search = isset($_GET['search']) ? $_GET['search'] : '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PastelFlix</title>
+    <title>PastelFlix </title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 
